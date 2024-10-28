@@ -13,6 +13,14 @@ const io = new Server(server);
 
 app.use(router);  // Use the router middleware
 
+io.on('connection', (socket)=>{ // default parameter
+  console.log('a new client connected');
+
+  socket.on('disconnection' , (socket)=>{
+    console.log('a client disconnected');
+  })
+})
+
 server.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
