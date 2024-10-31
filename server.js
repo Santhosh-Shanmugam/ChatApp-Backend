@@ -4,7 +4,7 @@ import { Server } from "socket.io";
 import dotenv from "dotenv";
 import router from "./router.js";  // Import the router module
 import cors  from "cors";
-
+import {adduser,removeuser,getuser,getUserInRoom} from './users.js'
 dotenv.config();
 
 const PORT = process.env.PORT || 2000;
@@ -27,7 +27,15 @@ io.on('connection', (socket)=>{ // default parameter
 
   socket.on('join' ,({name,room},callback)=>{
     
-    console.log(name,room);
+    const {error , user} = adduser({id:socket.id , name , room});
+    
+    if(error)
+    {
+      return callback(error);
+    }
+
+    
+    // console.log(name,room);
   })
 
 
