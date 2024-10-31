@@ -16,7 +16,7 @@ app.use(router);  // Use the router middleware
 io.on('connection', (socket)=>{ // default parameter
   console.log('a new client connected');
 
-  socket.on('disconnection' , (socket)=>{
+  socket.on('disconnection' , ()=>{
     console.log('a client disconnected');
   })
 })
