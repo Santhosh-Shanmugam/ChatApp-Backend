@@ -1,39 +1,34 @@
-const Users = []
+const Users = [];
 
-const adduser = ({id , name , room})=>{
+const adduser = ({ id, name, room }) => {
     name = name.trim().toLowerCase();
     room = room.trim().toLowerCase();
 
-    const exists = Users.find((user)=>{ user.name===name && user.room===room});
+    const exists = Users.find((user) => user.name === name && user.room === room);
 
-    if(exists)
-    {
-        return { error:'a  user with that name is already in this room' };
+    if (exists) {
+        return { error: 'A user with that name is already in this room' };
     }
 
-    const user = {id,name,room};
+    const user = { id, name, room };
     Users.push(user);
 
-    return {user}
-}
+    return { user };
+};
 
-const removeuser = ({id}) =>{
-    const index = Users.findIndex((user)=>user.id===id);
-    if(index !== -1)
-    {
-        return Users.splice(index,1)[0];
+const removeuser = ({ id }) => {
+    const index = Users.findIndex((user) => user.id === id);
+    if (index !== -1) {
+        return Users.splice(index, 1)[0];
     }
-}
+};
 
-const getuser =({id})=>{
-    Users.find((user)=>{
-        user.id===id
-    })
-}
+const getuser = ({ id }) => {
+    return Users.find((user) => user.id === id);
+};
 
-const  getUserInRoom = (room) => {
-    const usersInRoom = Users.filter((user) => user.room === room);
-}
+const getUserInRoom = (room) => {
+    return Users.filter((user) => user.room === room);
+};
 
-
-module.exports = {adduser,removeuser,getUserInRoom,getuser};
+export default { adduser, removeuser, getuser, getUserInRoom };
